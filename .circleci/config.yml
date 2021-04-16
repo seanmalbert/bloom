@@ -120,3 +120,4 @@ workflows:
       - cypress/run:
           requires:
             - setup
+          yarn: true

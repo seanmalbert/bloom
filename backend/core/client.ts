@@ -1229,6 +1229,9 @@ export interface FormMetadataOptions {
 
   /**  */
   description?: boolean;
+
+  /** */
+  exclusive?: boolean
 }
 
 export interface FormMetadata {
@@ -1243,6 +1246,9 @@ export interface FormMetadata {
 
   /** */
   customSelectText?: string
+
+  /** */
+  hideFromListing?: boolean
 }
 
 export interface Preference {
@@ -3300,7 +3306,8 @@ export enum UserRole {
 
 export enum ListingStatus {
   'active' = 'active',
-  'pending' = 'pending'
+  'pending' = 'pending',
+  'closed' = 'closed'
 }
 
 export enum CSVFormattingType {

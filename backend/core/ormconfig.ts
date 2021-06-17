@@ -18,7 +18,7 @@ const defaultConnectionForEnv = {
 }
 
 const env = process.env.NODE_ENV || "development"
-
+console.log("process.env.DATABASE_URL = ", process.env.DATABASE_URL)
 // If we have a DATABASE_URL, use that
 const connectionInfo = process.env.DATABASE_URL
   ? { url: process.env.DATABASE_URL }

@@ -1,29 +1,20 @@
 # TODO bump node version to latest LTS
 FROM node:12.22.1
 
-ENV APP_HOME /app
+WORKDIR /app
+EXPOSE 3001
 
-WORKDIR ${APP_HOME}
+# RUN npm install -g sass
 
-RUN npm install -g sass
-
-COPY package.json ${APP_HOME}/package.json
+COPY package.json /app/package.json
+COPY yarn.lock /app/yarn.lock
 
 # install necessary dependencies
 RUN yarn install
 
-# copy configs
-COPY .env ${APP_HOME}/.env
-COPY next.config.js ${APP_HOME}/next.config.js
-COPY tailwind.config.js ${APP_HOME}/tailwind.config.js
-COPY tsconfig.json ${APP_HOME}/tsconfig.json
+COPY . /app
 
-# copy dirs
-COPY layouts ${APP_HOME}/layouts
-COPY lib ${APP_HOME}/lib
-COPY page_content ${APP_HOME}/page_content
-COPY pages ${APP_HOME}/pages
-COPY public ${APP_HOME}/public
-COPY src ${APP_HOME}/src
+# copy ui-components
+COPY --from=bloom_ui-components /app/ ./ui-components
 
 CMD ["yarn", "dev"]
